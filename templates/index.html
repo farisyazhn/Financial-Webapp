@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Credit Card Approval</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/png" href="{{url_for('static', filename='images/advisor-img.png')}}" />
+	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='fonts/font-awesome-4.7.0/css/font-awesome.min.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='vendor/animate/animate.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='vendor/css-hamburgers/hamburgers.min.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='vendor/select2/select2.min.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/util.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/main.css')}}">
+</head>
+<body>
+
+    <div class="header">
+        <h1>Credit Card Approval</h1>
+    </div>  
+
+    <div class="all-content">
+        <h2> This model is created to predict if you qualify to get a credit card or not.</h2>
+        <h2>This model has the accuracy of 99.4%</h2>
+        <h3>Please fill in the form below.</h3>
+        <div class="content">
+        <form action="{{ url_for('predict')}}" method="post">
+            <br><br>
+            <label class=font-weight-bold for="Applicant_Gender"> Gender: </label>
+            <label class="radio-inline">
+                <input type="radio" name="Applicant_Gender" value="Male">Male
+            </label>
+            <label class="radio-inline">
+                <input type="radio" name="Applicant_Gender" value="Female">Female
+            </label>
+            <br><br>
+            <label class=font-weight-bold for="Applicant_Age"> Age: </label>
+            <input type="text" name="Applicant_Age" required="required" />
+            <br><br>
+            <label class=font-weight-bold for="Owned_Car"> Do you own a car: </label>
+            <label class="radio-inline">
+                <input type="radio" name="Owned_Car" value="Yes">Yes
+            </label>
+            <label class="radio-inline">
+                <input type="radio" name="Owned_Car" value="No">No
+            </label>
+            <br><br>
+            <label class=font-weight-bold for="Owned_Realty"> Do you own a property: </label>
+            <label class="radio-inline">
+                <input type="radio" name="Owned_Realty" value="Yes">Yes
+            </label>
+            <label class="radio-inline">
+                <input type="radio" name="Owned_Realty" value="No">No
+            </label>
+            <br><br>
+            <label class=font-weight-bold for="Total_Children"> Total Number of Children: </label> 
+            <select id="Total_Children" name="Total_Children">
+                <option disabled selected value> -- Select an option -- </option>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+            <br><br>
+            <label class=font-weight-bold for="Total_Income"> Annual Income (£):</label>
+            <input type="text" name="Total_Income" required="required" />
+            <br><br>
+            <label class=font-weight-bold for="Income_Type"> Source of Income: </label> 
+            <select id="Income_Type" name="Income_Type">
+                <option disabled selected value> -- Select an option -- </option>
+                <option value="Commercial associate">Commercial Associate</option>
+                <option value="Pensioner">Pensioner</option>
+                <option value="State servant">State Servant</option>
+                <option value="Student">Student</option>
+                <option value="Working">Working</option>
+                <option value="Other">Other</option>
+            </select>
+            <br><br>
+            <label class=font-weight-bold for="Education_Type"> Education Level: </label> 
+            <select id="Education_Type" name="Education_Type">
+                <option disabled selected value> -- Select an option -- </option>
+                <option value="Academic degree">Academic Degree</option>
+                <option value="Higher education">Higher Education</option>
+                <option value="Incomplete higher">Incomplete Higher</option>
+                <option value="Lower secondary">Lower Secondary</option>
+                <option value="Secondary / secondary special">Secondary / Secondary Special</option>
+            </select>
+            <br><br>
+            <label class=font-weight-bold for="Family_Status"> Marital Status: </label> 
+            <select id="Family_Status" name="Family_Status">
+                <option disabled selected value> -- Select an option -- </option>
+                <option value="Civil marriage">Civil Marriage</option>
+                <option value="Married">Married</option>
+                <option value="Separated">Separated</option>
+                <option value="Single / not married">Single / Not Married</option>
+                <option value="Widow">Widow</option>
+            </select>
+            <br><br>
+            <label class=font-weight-bold for="Housing_Type"> Housing Type: </label> 
+            <select id="Housing_Type" name="Housing_Type">
+                <option disabled selected value> -- Select an option -- </option>
+                <option value="Co-op apartment">Co-op Apartment</option>
+                <option value="House / apartment">House / Apartment</option>
+                <option value="Municipal apartment">Municipal Apartment</option>
+                <option value="Office apartment">Office Apartment</option>
+                <option value="Rented apartment">Rented Apartment</option>
+                <option value="With parents">With Parents</option>
+            </select>
+            <br><br>
+            <label class=font-weight-bold for="Owned_Mobile_Phone"> Do you own a mobile phone: </label>
+            <label class="radio-inline">
+                <input type="radio" name="Owned_Mobile_Phone" value="Yes">Yes
+            </label>
+            <label class="radio-inline">
+                <input type="radio" name="Owned_Mobile_Phone" value="No">No
+            </label>
+            <br><br>
+            <label class=font-weight-bold for="Owned_Work_Phone"> Do you own a work phone: </label>
+            <label class="radio-inline">
+                <input type="radio" name="Owned_Work_Phone" value="Yes">Yes
+            </label>
+            <label class="radio-inline">
+                <input type="radio" name="Owned_Work_Phone" value="No">No
+            </label>
+            <br><br>
+            <label class=font-weight-bold for="Owned_Phone"> Do you own a home phone: </label>
+            <label class="radio-inline">
+                <input type="radio" name="Owned_Phone" value="Yes">Yes
+            </label>
+            <label class="radio-inline">
+                <input type="radio" name="Owned_Phone" value="No">No
+            </label>
+            <br><br>
+            <label class=font-weight-bold for="Owned_Email"> Do you own an email address: </label>
+            <label class="radio-inline">
+                <input type="radio" name="Owned_Email" value="Yes">Yes
+            </label>
+            <label class="radio-inline">
+                <input type="radio" name="Owned_Email" value="No">No
+            </label>
+            <br><br>
+            <label class=font-weight-bold for="Total_Family_Members"> Total Number of Family Members (including yourself - in your home): </label> 
+            <select id="Total_Family_Members" name="Total_Family_Members">
+                <option disabled selected value> -- Select an option -- </option>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+            </select>
+            <br><br>
+            <label class=font-weight-bold for="Years_of_Working"> Years of Employment: </label>
+            <input type="text" name="Years_of_Working" required="required" />
+            <br><br>
+            <label class=font-weight-bold for="Total_Bad_Debt"> Total of Bad Debt: </label>
+            <input type="text" name="Total_Bad_Debt" required="required" />
+            <br><br>
+            <label class=font-weight-bold for="Total_Good_Debt"> Total of Good Debt: </label>
+            <input type="text" name="Total_Good_Debt" required="required" />
+            <br><br>
+            <input type="submit", value = "Submit">
+            <br><br>
+        </form>
+    </div>
+    </div>
+ 
+    <script src="{{url_for('static', filename='vendor/jquery/jquery-3.2.1.min.js')}}"></script>
+    <script src="{{url_for('static', filename='vendor/bootstrap/js/popper.js')}}"></script>
+    <script src="{{url_for('static', filename='vendor/bootstrap/js/bootstrap.min.js')}}"></script>
+    <script src="{{url_for('static', filename='vendor/select2/select2.min.js')}}"></script>
+    <script src="{{url_for('static', filename='vendor/tilt/tilt.jquery.min.js')}}"></script>
+    <script >
+        $('.js-tilt').tilt({
+            scale: 1.1
+        })
+    </script>
+    <script src="{{url_for('static', filename='js/main.js')}}"></script>
+    <footer>
+        <p><br>Author: FARISYA AZHAN<br></p>
+    </footer>
+</body>
+</html>
